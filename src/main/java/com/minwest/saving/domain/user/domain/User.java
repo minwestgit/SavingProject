@@ -1,5 +1,6 @@
-package com.minwest.saving.domain;
+package com.minwest.saving.domain.user.domain;
 
+import com.minwest.saving.domain.transaction.domain.Transaction;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -30,5 +31,12 @@ public class User {
 
     @LastModifiedDate
     private LocalDateTime updateDate;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "account_id")
+    private User user;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Transaction> transactions = new ArrayList<>();
 
 }

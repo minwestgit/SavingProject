@@ -1,5 +1,7 @@
-package com.minwest.saving.domain;
+package com.minwest.saving.domain.account.domain;
 
+import com.minwest.saving.domain.transaction.domain.Transaction;
+import com.minwest.saving.domain.user.domain.User;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -28,5 +30,11 @@ public class Account {
 
     @LastModifiedDate
     private LocalDateTime updateDate;
+
+    @OneToOne(mappedBy = "account", fetch = FetchType.LAZY)
+    private User user;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Transaction> transactions = new ArrayList<>();
 
 }

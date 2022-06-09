@@ -1,4 +1,4 @@
-package com.minwest.saving.domain;
+package com.minwest.saving.domain.user.domain;
 
 import lombok.Getter;
 
