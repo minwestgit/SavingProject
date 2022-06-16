@@ -1,5 +1,6 @@
 package com.minwest.saving.domain.user.domain;
 
+import com.minwest.saving.domain.account.domain.Account;
 import com.minwest.saving.domain.transaction.domain.Transaction;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,7 +35,7 @@ public class User {
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id")
-    private User user;
+    private Account account;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Transaction> transactions = new ArrayList<>();
