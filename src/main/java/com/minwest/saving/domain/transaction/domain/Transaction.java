@@ -34,6 +34,17 @@ public class Transaction {
     @JoinColumn(name = "account_id")
     private Account account;
 
+    //==연관관계 메서드==//(양방향일 때 설정)
+    public void setUser(User user) {
+        this.user = user;
+        user.getTransactions().add(this);
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+        account.getTransactions().add(this);
+    }
+
     //==생성 메서드==//
     public static Transaction createTransaction(User user, Account account, TransactionStatus status, int money) {
         Transaction transaction = new Transaction();
@@ -43,4 +54,5 @@ public class Transaction {
         transaction.setMoney(money);
         return transaction;
     }
+
 }
