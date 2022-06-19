@@ -44,4 +44,36 @@ public class Account {
         user.setAccount(this);
     }
 
+    //==비즈니스 로직==//
+    /**
+     * 이자 계산
+     */
+    public void calcInterest() {
+        checkInterestRate();
+        monthInterest += money * interestRate / 365;
+    }
+
+    /**
+     * 금리 계산
+     */
+    public void checkInterestRate() {
+        if(money <= 1000000) {
+            interestRate = 2.5;
+        }
+        else if(money > 1000000 && money <= 100000000) {
+            interestRate = 2.0;
+        }
+        else {
+            interestRate = 0.1;
+        }
+    }
+
+    /**
+     * 결산
+     */
+    public void insertInterest() {
+        totalInterest += monthInterest; // total이 필요할까?
+        money += monthInterest;
+        monthInterest = 0;
+    }
 }
